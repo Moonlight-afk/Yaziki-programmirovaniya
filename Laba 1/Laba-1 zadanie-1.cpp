@@ -10,29 +10,44 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "Russian");
 	int chet = 0, i = 0, k = 0;
-	int* a = new int[100];
-	//открываем файл
-	ifstream file("C:\\Users\\student\\Desktop\\massiv.txt");
-	if (!file) {
-		cout << "Ошибка" << endl;
-	}
-	else {
-		//заполняем массив числами из файл
-		while (i < 100) {
-			file >> a[i];
+	//узнаем колличество чисел в файле
+		char str[250];
+		int count = 1;
+		FILE *stream;
+		errno_t err;
+		err = fopen_s(&stream, "C:\\Users\\student\\Desktop\\massiv.txt", "r");
+		if (err == 0)
+		{
+			fgets(str, 250, stream);
+			for (int i = 0; i < strlen(str); i++)
+			{
+				if (str[i] == ' ')
+				{
+					count++;
+				}
+			}
+		}
+		//создаем массив и заполняем его числами из файлов
+		int* a = new int[count];
+		ifstream file("C:\\Users\\student\\Desktop\\massiv.txt");
+		i = 0;
+		while (i < count) {
+			 file >> a[i];
 			i++;
 		}
 		cout << endl;
+		//Вывод начального массива
 		i = 0;
 		cout << "Неотсортированный:" << endl;
-		while (i < 100) {
+		while (i < count) {
 			cout << a[i] << " ";
 			i++;
 		}
 		cout << endl;
-		for (int i = 0; i < 100; i++) {
+		//Сортировка массива
+		for (int i = 0; i < count; i++) {
 			bool flag = true;
-			for (int j = 0; j < 100 - (i + 1); j++) {
+			for (int j = 0; j < count - (i + 1); j++) {
 				if (a[j] > a[j + 1]) {
 					flag = false;
 					swap(a[j], a[j + 1]);
@@ -42,16 +57,18 @@ int main() {
 				break;
 			}
 		}
+		//Узнаем скольно положительных элементов
 		i = 0;
-		while (i < 100) {
+		while (i < count) {
 			if (a[i] >= 0) {
 				k++;
 			}
 			i++;
 		}
+		//Создаем новый1 массив размерностью положительных элементов и заполняем его 
 		int* nov = new int[k];
 		int j = 0;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < count; i++)
 		{
 			if (a[i] >= 0)
 			{
@@ -59,6 +76,7 @@ int main() {
 				j++;
 			}
 		}
+		//Вывод конечного массива
 		cout << "Отсортированный:" << endl;
 		i = 0;
 		while (i < k) {
@@ -66,6 +84,6 @@ int main() {
 			i++;
 		}
 		cout << endl;
-	}
+	
 	system("pause");
 }
