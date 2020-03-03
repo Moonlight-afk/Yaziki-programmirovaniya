@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include<iostream>
 
 using namespace std;
@@ -5,9 +6,11 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "Russian");
 	int k, nehet;
-	int b, a;
+	int b, a,razmer;
 	int n = 0;
 	//задаем интервал
+	cout << "Введите размер массива:";
+	cin >> razmer;
 	cout << "Введите минимальный элемент массива:";
 	cin >> a;
 	cout << "Введите максимальный элемент массива:";
@@ -23,13 +26,13 @@ int main() {
 	}
 	else {
 		//создаем и заполняем массив случайными числами
-		int* massiv = new int[20];
-		while (n < 20) {
+		int* massiv = new int[razmer];
+		while (n < razmer) {
 			massiv[n] = a + (rand() % (b - a + 1));
 			n++;
 		}
-		while (n < 20) {
-			cout << massiv[n]<<" ";
+		while (n < razmer) {
+			cout << massiv[n] << " ";
 			n++;
 		}
 		cout << endl;
@@ -39,20 +42,20 @@ int main() {
 		n = 0;
 		nehet = 0;
 		//считаем сколько нечетных элементов
-		while (n < 20) {
+		while (n < razmer) {
 			if (massiv[n] % 2 != 0) {
 				nehet += 1;
 			}
 			n++;
 		}
 		//увеличиваем массив
-		int razmer = 20 + nehet;
-		massiv = (int*)realloc(massiv, razmer * sizeof(int));
+		int razmernov = razmer + nehet;
+		massiv = (int*)realloc(massiv, razmernov * sizeof(int));
 		//вставляем после каждого нечетного элемента число k и сдвигаем массив
 		n = 0;
-		while (n < razmer) {
+		while (n < razmernov) {
 			if (massiv[n] % 2 != 0) {
-				for (int j = razmer - 1; j > n + 1; --j) {
+				for (int j = razmernov - 1; j > n + 1; --j) {
 					massiv[j] = massiv[j - 1];
 				}
 				massiv[n + 1] = k;
@@ -62,7 +65,7 @@ int main() {
 		}
 		//выводим получившийся массив
 		n = 0;
-		while (n < razmer) {
+		while (n < razmernov) {
 			cout << massiv[n] << " ";
 			n++;
 		}
