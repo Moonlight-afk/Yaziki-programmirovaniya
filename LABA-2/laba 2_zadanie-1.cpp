@@ -24,7 +24,7 @@ int main() {
 	cin >> b;
 
 	//создаем и заполняем матрицу случайными числами из диапозона [a,b]
-	A = new int* [n];
+	A = new int*[n];
 	for (i = 0; i<n; i++) {
 		A[i] = new int[m];
 	}
@@ -44,14 +44,14 @@ int main() {
 	}
 
 	//находим максимальный отрицательный элемент в нужной зоне
-	int maxotr = 0;
+	int maxotr = -999999;
 	int imaxotr, jmaxotr;
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = n-i-1; j < m; j++)
+		for (int j = 0; j < m; j++)
 		{
-			if (i>j)
-				if (A[i][j] < maxotr) {
+			if ((i>j) && (i>n - 1 - j))
+				if ((A[i][j] > maxotr) && (A[i][j]<0)) {
 					maxotr = A[i][j];
 					//запоминаем i и j
 					imaxotr = i;
@@ -69,8 +69,8 @@ int main() {
 	{
 		for (int j = 0; j < m; j++)
 		{
-			if (((i + j) < n + 1) && (i > j))
-				if ((A[i][j] < minpol)&&(A[i][j]>=0)) {
+			if ((i<n - 1 - j) && (i > j))
+				if ((A[i][j] < minpol) && (A[i][j] >= 0)) {
 					minpol = A[i][j];
 					//запоминаем i и j
 					iminpol = i;
@@ -78,7 +78,7 @@ int main() {
 				}
 		}
 	}
-	cout<<"Максимальный отрицательный:" << maxotr << endl;
+	cout << "Максимальный отрицательный:" << maxotr << endl;
 	cout << "Минимальный положительный:" << minpol << endl;
 
 	//меняем элементы местами
