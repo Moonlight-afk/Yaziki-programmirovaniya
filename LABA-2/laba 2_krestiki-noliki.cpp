@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+
 
 char board[9] = { '-','-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' };
 int i, j;
@@ -30,12 +30,12 @@ int move() {
 	}
 	return nomer;
 }
-
+using namespace std;
 int main() {
 	setlocale(LC_ALL, "RUS");
 	int** a;
-	int n = 3, m = 3,proverka;
-	a = new int* [n];
+	int n = 3, m = 3, proverka;
+	a = new int*[n];
 	for (i = 0; i < n; i++) {
 		a[i] = new int[m];
 	}
@@ -53,14 +53,14 @@ int main() {
 	int a31 = a[2][0];
 	int a32 = a[2][1];
 	int a33 = a[2][2];*/
-	cout << "Массив:" << endl;
+	/*cout << "Массив:" << endl;
 	for (i = 0; i < n; i++)
 	{
 
 		for (j = 0; j < m; j++)
 			printf("%5d", a[i][j]);
 		cout << endl;
-	}
+	}*/
 	board_cout();
 	cout << endl;
 	int nomer = move();
@@ -92,21 +92,21 @@ int main() {
 	if (nomer == 9) {
 		a[2][2] = 1;
 	}
-	cout << "Массив:" << endl;
+	/*cout << "Массив:" << endl;
 	for (i = 0; i < n; i++)
 	{
 
 		for (j = 0; j < m; j++)
 			printf("%5d", a[i][j]);
 		cout << endl;
-	}
+	}*/
 	for (i = 0; i < n; i++)
 	{
 
 		for (j = 0; j < m; j++) {
 			if (a[i][j] == 0) {
 				a[i][j] = 1;
-				if (i ==0 && j == 0) {
+				if (i == 0 && j == 0) {
 					board[0] = 'O';
 				}
 				if (i == 0 && j == 1) {
@@ -141,15 +141,21 @@ int main() {
 	}
 
 	///////////////////////////////
-	for (int k = 1; k < 9; k++) {
-		cout << "Массив:" << endl;
+	for (int k = 1; k < 5; k++) {
+		system("cls");
+		if (board[0] == 'X'&&board[1] == 'X'&&board[2] == 'X') {
+			cout << "Выиграли крестики!" << endl;
+		}
+		//cout << "shag:" << k<<endl;
+		proverka = 0;
+		/*cout << "Массив:" << endl;
 		for (i = 0; i < n; i++)
 		{
 
 			for (j = 0; j < m; j++)
 				printf("%5d", a[i][j]);
 			cout << endl;
-		}
+		}*/
 		board_cout();
 		cout << endl;
 		int nomer = move();
@@ -181,54 +187,65 @@ int main() {
 		if (nomer == 9) {
 			a[2][2] = 1;
 		}
-		cout << "Массив:" << endl;
+		/*cout << "Массив:" << endl;
 		for (i = 0; i < n; i++)
 		{
 
 			for (j = 0; j < m; j++)
 				printf("%5d", a[i][j]);
 			cout << endl;
-		}
-		proverka = 0;
-		for (i = 0; i < n; i++)
-		{
+		}*/
+		if (proverka == 0) {
+			//cout << "norm" << endl;
+			for (i = 0; i < n; i++)
+			{
 
-			for (j = 0; j < m; j++) {
-				if (a[i][j] == 0) {
-					a[i][j] = 1;
-					if (i == 0 && j == 0) {
-						board[0] = 'O';
+				for (j = 0; j < m; j++) {
+					if (a[i][j] == 0) {
+						a[i][j] = 1;
+						if (i == 0 && j == 0) {
+							board[0] = 'O';
+						}
+						if (i == 0 && j == 1) {
+							board[1] = 'O';
+						}
+						if (i == 0 && j == 2) {
+							board[2] = 'O';
+						}
+						if (i == 1 && j == 0) {
+							board[3] = 'O';
+						}
+						if (i == 1 && j == 1) {
+							board[4] = 'O';
+						}
+						if (i == 1 && j == 2) {
+							board[5] = 'O';
+						}
+						if (i == 2 && j == 0) {
+							board[6] = 'O';
+						}
+						if (i == 2 && j == 1) {
+							board[7] = 'O';
+						}
+						if (i == 2 && j == 2) {
+							board[8] = 'O';
+						}
+						proverka = 1;
 					}
-					if (i == 0 && j == 1) {
-						board[1] = 'O';
-					}
-					if (i == 0 && j == 2) {
-						board[2] = 'O';
-					}
-					if (i == 1 && j == 0) {
-						board[3] = 'O';
-					}
-					if (i == 1 && j == 1) {
-						board[4] = 'O';
-					}
-					if (i == 1 && j == 2) {
-						board[5] = 'O';
-					}
-					if (i == 2 && j == 0) {
-						board[6] = 'O';
-					}
-					if (i == 2 && j == 1) {
-						board[7] = 'O';
-					}
-					if (i == 2 && j == 2) {
-						board[8] = 'O';
-					}
-					proverka = 1;
-					break;
+					if(proverka==1)break;
 				}
+				if (proverka == 1)break;
 			}
-			if (proverka = 1)break;
 		}
+		//else cout << "ne norm" << endl;
 	}
+	system("cls");
+	cout << "#############" << endl;
+	cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << endl;
+	cout << "#############" << endl;
+	cout << "# " << board[3] << " # " << board[4] << " # " << board[5] << " # " << endl;
+	cout << "#############" << endl;
+	cout << "# " << board[6] << " # " << board[7] << " # " << board[8] << " # " << endl;
+	cout << "#############" << endl;
 	system("pause");
 }
