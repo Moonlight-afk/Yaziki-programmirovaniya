@@ -28,7 +28,7 @@ int move() {
 	std::cout << "#############" << std::endl;
 	std::cout << "В какую ячейку вы хотите поставить Х?-";
 	std::cin >> nomer;
-	while (nomer > 9 || nomer < 1) {
+	while (nomer > 9 || nomer < 1||board[nomer-1]!='-') {
 		std::cout << "Пожалуйста введите правильное число (1-9):";
 		std::cin >> nomer;
 	}
@@ -179,6 +179,8 @@ int main() {
 
 		//каждый раз после хода крестиками идет проверка выиграша
 		if (board[0] == 'X' && board[1] == 'X' && board[2] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -191,6 +193,8 @@ int main() {
 			exit(0);
 		}
 		if (board[3] == 'X' && board[4] == 'X' && board[5] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -203,6 +207,8 @@ int main() {
 			exit(0);
 		}
 		if (board[6] == 'X' && board[7] == 'X' && board[8] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -215,6 +221,8 @@ int main() {
 			exit(0);
 		}
 		if (board[0] == 'X' && board[3] == 'X' && board[6] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -227,6 +235,8 @@ int main() {
 			exit(0);
 		}
 		if (board[1] == 'X' && board[4] == 'X' && board[7] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -239,6 +249,8 @@ int main() {
 			exit(0);
 		}
 		if (board[2] == 'X' && board[5] == 'X' && board[8] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -251,6 +263,8 @@ int main() {
 			exit(0);
 		}
 		if (board[0] == 'X' && board[4] == 'X' && board[8] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -263,6 +277,8 @@ int main() {
 			exit(0);
 		}
 		if (board[2] == 'X' && board[4] == 'X' && board[6] == 'X') {
+			system("cls");
+			system("color 2");
 			cout << "Выиграли крестики!" << endl;
 			std::cout << "#############" << std::endl;
 			std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -318,6 +334,7 @@ int main() {
 						//проверка на выигрыш после хода ноликами
 						if (board[0] == 'O' && board[1] == 'O' && board[2] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -331,6 +348,7 @@ int main() {
 						}
 						if (board[3] == 'O' && board[4] == 'O' && board[5] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -344,6 +362,7 @@ int main() {
 						}
 						if (board[6] == 'O' && board[7] == 'O' && board[8] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -357,6 +376,7 @@ int main() {
 						}
 						if (board[0] == 'O' && board[3] == 'O' && board[6] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -370,6 +390,7 @@ int main() {
 						}
 						if (board[1] == 'O' && board[4] == 'O' && board[7] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -383,6 +404,7 @@ int main() {
 						}
 						if (board[2] == 'O' && board[5] == 'O' && board[8] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -396,6 +418,7 @@ int main() {
 						}
 						if (board[0] == 'O' && board[4] == 'O' && board[8] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -409,6 +432,7 @@ int main() {
 						}
 						if (board[2] == 'O' && board[4] == 'O' && board[6] == 'O') {
 							system("cls");
+							system("color 2");
 							cout << "Выиграли нолики!" << endl;
 							std::cout << "#############" << std::endl;
 							std::cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << std::endl;
@@ -434,6 +458,7 @@ int main() {
 
 	//если никто не выиграл, очищается терминал и выводится получившееся поле
 	system("cls");
+	system("color 2");
 	cout << "#############" << endl;
 	cout << "# " << board[0] << " # " << board[1] << " # " << board[2] << " # " << endl;
 	cout << "#############" << endl;
@@ -441,5 +466,6 @@ int main() {
 	cout << "#############" << endl;
 	cout << "# " << board[6] << " # " << board[7] << " # " << board[8] << " # " << endl;
 	cout << "#############" << endl;
+	cout << "Ничья" << endl;
 	system("pause");
 }
