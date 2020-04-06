@@ -73,17 +73,47 @@ int main() {
 	cout << "Вектор В:" << endl;
 	for (i = 0; i < n; i++) {
 		file >> B[i];
-		cout << B[i] << endl;
+		cout << B[i] << " ";
 	}
 	cout << endl;
 	cout << "Вектор D:" << endl;
 	for (i = 0; i < m; i++) {
 		file >> D[i];
+		cout << D[i] << endl;
+	}
+	cout << endl;
+	cout << "Транспонированный вектор D:" << endl;
+	for (i = 0; i < m; i++) {
 		cout << D[i] << " ";
 	}
 	cout << endl;
-
-	cout << "Умножение вектора В на вектор D:" << endl;
+	cout << "Умножение вектора D на матрицу С:" << endl;
+	int* E = new int[n];
+	for (i = 0; i < n; i++) {
+		E[i] = 0;
+		//cout << E[i] << " ";
+	}
+	cout << endl;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			E[i] =E[i]+( C[j][i] * D[j]);
+			//cout << C[j][i] << "---C " << endl;;
+			//cout << D[j] << "---D" << endl;
+			//cout << E[k] << " ";
+		}
+		cout << E[i] << " ";
+	}
+	cout << endl;
+	cout << "Умножение вектора В на полученную матрицу Е:" << endl;
+	int* F = new int{ 0 };
+	for (i = 0; i < m; i++) {
+		F[0] = F[0] + (E[i] * B[i]);
+	}
+	cout << F[0] << endl;
+	/*for (i = 0; i < n; i++) {
+		cout << E[i] << " ";
+	}*/
+	/*cout << "Умножение вектора В на вектор D:" << endl;
 	int k = -1;
 	int l = 0;
 	int** BD;
@@ -101,7 +131,7 @@ int main() {
 			cout << BD[i][j] << "\t";
 		}
 		cout << endl;
-	}
+	}*/
 	/*cout << "Умножение вектора B на матрицу С:" << endl;
 	int k = 0;
 	for (int i = 0; i < m; i++) {
@@ -137,3 +167,4 @@ int main() {
 	cout << endl;
 	system("pause");
 }
+
