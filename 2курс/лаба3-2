@@ -1,0 +1,171 @@
+#include <iostream>
+using namespace std;
+template <typename T>
+
+class Set {
+	int size;
+	T* set;
+	bool isSet(T a);
+public:
+	Set(int n = 0);
+	Set(const Set& copy); // конструктор копирования
+	~Set(); // деструктор
+	void insert(T a); // функция определяет принадлежность элемента множеству
+	Set operator= (const Set& a);
+	Set Union(Set& a); // функция находит множество объединения
+	Set Intersection(Set& a); // функция находит множество пересечения
+	bool Find(T a); // поиск элемента в множестве
+	void cout_result(); // вывод результата
+	/*дружественная функция для ввода элементов множества*/
+	template<typename T> friend istream& operator >> (istream& in, Set<T>& t);
+};
+
+template<typename T>
+
+bool Set<T>::isSet(T a)
+{
+	/*Проверка на принадлежность к множеству натур. чисел*/
+	if (a > 0)
+		return true;
+	else
+		return false;
+}
+
+template<typename T> //конструктор
+
+Set<T>::Set(int n)
+{
+	size = n;
+	set = new T[size];
+}
+
+template<typename T>
+
+Set<T>::Set(const Set<T>& copy) //конструктор копирования
+{
+	size = copy.size;
+	set = new T[size];
+	for (int i = 0; i < size; i++)
+		set[i] = copy.set[i];
+}
+
+template<typename T>
+
+Set<T>::~Set() //Диструктор
+{
+	delete[] set;
+}
+
+template<typename T>
+
+Set<T> Set<T>::operator=(const Set<T>& a) //Оператор присваивания
+{
+	/*Конструктор присваивания*/
+	delete[] set;
+	size = a.size;
+	set = new T[size];
+	for (int i = 0; i < size; i++) {
+		set[i] = a.set[i];
+	}
+	return *this;
+}
+
+template<typename T>
+
+Set<T> Set<T>::Union(Set& a) {
+	/*Нахождение объединения двух множеств*/
+	int n = size + a.size;
+	int k = size;
+	Set<int> Temp(n);
+	for (int i = 0; i < size; i++) {
+		Temp.set[i] = set[i];
+	}
+	for (int i = 0; i < a.size; i++) {
+		if (Temp.Find(a.set[i])) {
+			Temp.set[k++] = a.set[i];
+		}
+	}
+	Set Buf(k);
+	for (int i = 0; i < k; i++) {
+		Buf.set[i] = Temp.set[i];
+	}
+	return Buf;
+}
+
+template<typename T>
+
+Set<T> Set<T>::Intersection(Set& a) {
+	/*Нахождения пересечения двух множеств*/
+	Set<int> Temp(size);
+	int k = 0;
+	for (int i = 0; i < size; i++) {
+		if (!a.Find(set[i])) {
+			Temp.set[k++] = set[i];
+		}
+	}
+	Set Buf(k);
+	for (int i = 0; i < k; i++) {
+		Buf.set[i] = Temp.set[i];
+	}
+	return Buf;
+}
+
+template<typename T>
+
+bool Set<T>::Find(T a) {
+	/*Есть ли число в множестве*/
+	for (int i = 0; i < size; i++) {
+		if (a == set[i])
+			return false;
+	}
+	return true;
+}
+
+template<typename T>
+
+void Set<T>::cout_result() //Функция вывода результата на экран
+{
+	for (int i = 0; i < size; i++)
+		cout << set[i] << " ";
+}
+
+template<typename T>
+
+istream& operator>><>(istream& in, Set<T>& t) //Переопределение оператора ввода
+{
+	int temp;
+	cout << "Введите колличсетво элементов в множестве: ";
+	in >> t.size;
+	t.set = new T[t.size];
+	for (int i = 0; i < t.size; i++) {
+		cout << "Введите " << i + 1 << "-ый элемент множества: ";
+		in >> temp;
+		if (t.isSet(temp)) {
+			if (t.Find(temp))
+				t.set[i] = temp;
+			else {
+				cout << "Повторите ввод элемента " << endl;
+				i--;
+			}
+			cout << endl;
+		}
+		else {
+			cout << "Элемент не может принадлежать множеству " << endl;
+			i--;
+		}
+	}
+	return in;
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Set<int> a, b;
+	Set<int> nat, even, sunion, sintersection;
+	cin >> nat;
+	cin >> even;
+	sunion = nat.Union(even);
+	cout << "Объединение множеств:" << endl; sunion.cout_result(); cout << endl;
+	sintersection = nat.Intersection(even);
+	cout << "Пересечение множеств:" << endl; sintersection.cout_result();
+}
